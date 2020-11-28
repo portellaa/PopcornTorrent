@@ -461,7 +461,7 @@ using namespace libtorrent;
     __weak __typeof__(self) weakSelf = self;
     NSLog(@"file to be streamed is %@",[self.savePath stringByAppendingPathComponent:_fileName]);
     [self.mediaServer addDefaultHandlerForMethod:@"GET" requestClass:[GCDWebServerRequest class] asyncProcessBlock:^(GCDWebServerRequest *request, GCDWebServerCompletionBlock completionBlock) {
-        GCDWebServerFileResponse *response = [[GCDWebServerFileResponse alloc] init];
+        GCDWebServerFileResponse *response = nil;
         
         if (request.hasByteRange) {
             response = [[GCDWebServerFileResponse alloc]initWithFile:fileURL.relativePath byteRange:request.byteRange];
