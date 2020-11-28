@@ -490,8 +490,10 @@ using namespace libtorrent;
             completionBlock(response);
         }
     }];
-    
-    [self.mediaServer startWithPort:50321 bonjourName:nil];
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.mediaServer startWithPort:50321 bonjourName:nil];
+    });
     
     __block NSURL *serverURL = self.mediaServer.serverURL;
     
